@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -25,17 +26,25 @@ public class Product {
 	private String brand;
 	private BigDecimal price;
 	private String category;
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
 	private Date releaseDate;
 	private boolean available;
 	private int quantity;
+	
+	private String imageName;
+	private String imageType;
+	@Lob
+	private byte[] imageData;
 
 	public Product() {
 		super();
 	}
 
+	
+
 	public Product(int id, String name, String description, String brand, BigDecimal price, String category,
-			Date releaseDate, boolean available, int quantity) {
+			Date releaseDate, boolean available, int quantity, String imageName, String imageType, byte[] imageData) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,7 +55,48 @@ public class Product {
 		this.releaseDate = releaseDate;
 		this.available = available;
 		this.quantity = quantity;
+		this.imageName = imageName;
+		this.imageType = imageType;
+		this.imageData = imageData;
 	}
+
+
+
+	public String getImageName() {
+		return imageName;
+	}
+
+
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+
+
+	public String getImageType() {
+		return imageType;
+	}
+
+
+
+	public void setImageType(String imageType) {
+		this.imageType = imageType;
+	}
+
+
+
+	public byte[] getImageData() {
+		return imageData;
+	}
+
+
+
+	public void setImageData(byte[] imageData) {
+		this.imageData = imageData;
+	}
+
+
 
 	public int getId() {
 		return id;
